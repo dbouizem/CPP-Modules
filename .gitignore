@@ -1,0 +1,28 @@
+# Build artifacts
+*.o
+*.out
+
+# Generated exercise executables
+megaphone
+phonebook
+account
+zombie
+zombieHorde
+brain
+violence
+replace
+harl
+harlFilter
+
+# Generated replacement files
+*.replace
+
+# Editor and OS files
+.vscode/
+.idea/
+*~
+.DS_Store
+
+# Local Codex metadata
+.agents/
+.codex/
