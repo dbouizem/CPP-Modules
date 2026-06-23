@@ -270,16 +270,16 @@ tableau, puis appelle la methode correspondante grace a un pointeur sur fonction
 membre :
 
 ```cpp
-typedef void (Harl::*Complaint)(void);
+typedef void (Harl::*MemberFunction)(void);
 
-Complaint complaints[4] = {
+MemberFunction functions[4] = {
 	&Harl::debug,
 	&Harl::info,
 	&Harl::warning,
 	&Harl::error
 };
 
-(this->*complaints[i])();
+(this->*functions[i])();
 ```
 
 Cette solution evite une longue suite de `if/else if`.

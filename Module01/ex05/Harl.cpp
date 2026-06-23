@@ -31,9 +31,9 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	typedef void (Harl::*Complaint)(void);
+	typedef void (Harl::*MemberFunction)(void);
 	const std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	Complaint complaints[4] = {
+	MemberFunction functions[4] = {
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
@@ -44,7 +44,7 @@ void Harl::complain(std::string level)
 	{
 		if (level == levels[i])
 		{
-			(this->*complaints[i])();
+			(this->*functions[i])();
 			return;
 		}
 	}
