@@ -23,6 +23,3 @@ harlFilter
 *~
 .DS_Store
 
-# Local Codex metadata
-.agents/
-.codex/

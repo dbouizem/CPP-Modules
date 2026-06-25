@@ -1,9 +1,9 @@
-NAME = harl
+NAME = fixed
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Harl.cpp
+SRCS = main.cpp Fixed.cpp
 OBJ_DIR = obj/
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
 LEGACY_OBJS = $(SRCS:.cpp=.o)
@@ -16,7 +16,7 @@ $(NAME): $(OBJS)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)%.o: %.cpp Harl.hpp | $(OBJ_DIR)
+$(OBJ_DIR)%.o: %.cpp Fixed.hpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:

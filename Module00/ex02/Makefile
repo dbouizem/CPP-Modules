@@ -4,7 +4,9 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = tests.cpp Account.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJ_DIR = obj/
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
+LEGACY_OBJ = $(SRC:.cpp=.o)
 HEADER = Account.hpp
 
 all: $(NAME)
@@ -12,11 +14,15 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HEADER)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)%.o: %.cpp $(HEADER) | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
+	rm -f $(LEGACY_OBJ)
 
 fclean: clean
 	rm -f $(NAME)
