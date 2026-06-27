@@ -152,3 +152,10 @@ compte conserve son propre solde et ses compteurs, tandis que les membres
 | `make clean` | Supprime les fichiers objets `.o`. |
 | `make fclean` | Supprime les objets et l'executable. |
 | `make re` | Nettoie puis recompile entierement l'exercice. |
+
+## Diff
+```
+./account | sed 's/^\[[0-9_]*\] //' > my.log
+sed 's/^\[[0-9_]*\] //' 19920104_091532.log > ref.log
+diff my.log ref.log
+```
