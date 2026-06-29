@@ -3,83 +3,35 @@
 
 int	main(void)
 {
-	std::cout << "=== ClapTrap test ===" << std::endl;
-	ClapTrap	clap("Basic");
-
-	clap.attack("target");
-	clap.takeDamage(3);
-	clap.beRepaired(2);
-
-	std::cout << std::endl;
-	std::cout << "=== ScavTrap test ===" << std::endl;
-	ScavTrap	scav("Serena");
-
-	scav.attack("training dummy");
-	scav.guardGate();
-
-	std::cout << std::endl;
-	std::cout << "=== FragTrap test ===" << std::endl;
-	FragTrap	frag("Fraggy");
-
-	frag.attack("training dummy");
-	frag.highFivesGuys();
-
-	std::cout << std::endl;
-	std::cout << "=== DiamondTrap construction and actions ===" << std::endl;
+	std::cout << "=== DiamondTrap construction and names ===" << std::endl;
 	DiamondTrap	diamond("Diamond");
 
+	std::cout << std::endl;
 	diamond.whoAmI();
+
+	std::cout << "\n=== DiamondTrap inherited actions ===" << std::endl;
 	diamond.attack("training dummy");
 	diamond.takeDamage(40);
 	diamond.beRepaired(15);
 	diamond.guardGate();
 	diamond.highFivesGuys();
 
-	/*
-	std::cout << std::endl;
-	std::cout << "=== Extra DiamondTrap tests ===" << std::endl;
-
-	std::cout << "--- Test: one ClapTrap construction in diamond ---"
-		<< std::endl;
-	{
-		DiamondTrap	blockTest("BlockDiamond");
-
-		blockTest.whoAmI();
-		blockTest.attack("block target");
-	}
-	std::cout << "Block ended" << std::endl;
-
-	std::cout << std::endl;
-	std::cout << "--- Test: 50 energy points from ScavTrap ---"
-		<< std::endl;
-	DiamondTrap	energyTest("EnergyDiamond");
-
-	for (int i = 0; i < 51; i++)
-		energyTest.attack("energy target");
-	energyTest.beRepaired(5);
-
-	std::cout << std::endl;
-	std::cout << "--- Test: 100 hit points from FragTrap ---"
-		<< std::endl;
-	DiamondTrap	hpTest("HpDiamond");
-
-	hpTest.takeDamage(99);
-	hpTest.attack("target after 99 damage");
-	hpTest.takeDamage(1);
-	hpTest.attack("target after 100 damage");
-	hpTest.beRepaired(10);
-	*/
-
-	std::cout << std::endl;
-	std::cout << "=== DiamondTrap copy and assignment ===" << std::endl;
+	std::cout << "\n=== DiamondTrap copy and assignment ===" << std::endl;
 	DiamondTrap	copy(diamond);
+	std::cout << std::endl;
+
 	DiamondTrap	assigned;
+	std::cout << std::endl;
 
 	assigned = diamond;
-	copy.whoAmI();
-	assigned.whoAmI();
-
 	std::cout << std::endl;
+
+	copy.whoAmI();
+	std::cout << std::endl;
+
+	assigned.whoAmI();
+	std::cout << std::endl;
+
 	std::cout << "=== End of main ===" << std::endl;
 	return (0);
 }

@@ -94,3 +94,14 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		<< " hit points and now has " << _hitPoints << " hit points"
 		<< std::endl;
 }
+
+/*
+void	ClapTrap::printStatus(void) const
+{
+	std::cout << "[" << _name << "] "
+		<< "HP: " << _hitPoints
+		<< " | Energy: " << _energyPoints
+		<< " | Damage: " << _attackDamage
+		<< std::endl;
+}
+*/
