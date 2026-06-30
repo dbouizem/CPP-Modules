@@ -55,7 +55,8 @@ void	MateriaSource::learnMateria(AMateria* materia)
 	{
 		if (!this->templates[i])
 		{
-			this->templates[i] = materia;
+			this->templates[i] = materia->clone();
+			delete materia;
 			return ;
 		}
 	}

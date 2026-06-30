@@ -28,18 +28,10 @@ int	main()
 	std::cout << wrong->getType() << " " << std::endl;
 	wrong->makeSound();
 	delete wrong;
-
-	/*
-		Optional direct object test:
-
-		Dog dog;
-		Cat cat;
-
-		std::cout << dog.getType() << ": ";
-		dog.makeSound();
-		std::cout << cat.getType() << ": ";
-		cat.makeSound();
-	*/
-
 	return (0);
 }
+
+/*
+Si on n’utilise pas virtual, le compilateur utilise le type du pointeur,
+pas le type réel de l’objet.
+*/

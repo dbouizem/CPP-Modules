@@ -9,7 +9,7 @@ Dog::Dog()
 
 Dog::Dog(const Dog& other) : Animal(other)
 {
-	this->brain = new Brain(*other.brain);
+	this->brain = new Brain(*other.brain); // nouveau Brain copié // (Shallow copy)❌ his->brain = other.brain; //  copie seulement l’adresse
 	std::cout << "Dog copy constructor called" << std::endl;
 }
 
@@ -19,8 +19,8 @@ Dog&	Dog::operator=(const Dog& other)
 	if (this != &other)
 	{
 		Animal::operator=(other);
-		delete this->brain;
-		this->brain = new Brain(*other.brain);
+		delete this->brain; // supprime l’ancien Brain // (Shallow copy)❌ rien a delete
+		this->brain = new Brain(*other.brain); // nouveau Brain copié // (Shallow copy)❌ this->brain = other.brain; // copie seulement l’adresse
 	}
 	return (*this);
 }
@@ -28,7 +28,7 @@ Dog&	Dog::operator=(const Dog& other)
 Dog::~Dog()
 {
 	std::cout << "Dog destructor called" << std::endl;
-	delete this->brain;
+	delete this->brain; // supprime son propre Brain // (Shallow copy)❌ risque double delete
 }
 
 void	Dog::makeSound() const

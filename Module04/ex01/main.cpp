@@ -4,7 +4,7 @@
 
 static void	testAnimalArray()
 {
-	const int	size = 6;
+	const int	size = 4;
 	Animal*		animals[size];
 
 	std::cout << "----- Animal array test -----" << std::endl;
@@ -24,26 +24,44 @@ static void	testAnimalArray()
 		delete animals[i];
 }
 
-static void	testDogDeepCopy()
+static void	testDogCopyConstructor()
 {
 	std::cout << std::endl;
-	std::cout << "----- Dog deep copy test -----" << std::endl;
-	Dog	dog1;
+	std::cout << "----- Dog copy constructor test -----" << std::endl;
+	Dog	basic;
 
-	dog1.setIdea(0, "I like bones");
-	Dog	dog2(dog1);
-	dog2.setIdea(0, "I like sleeping");
+	basic.setIdea(0, "basic keeps this idea");
+	std::cout << "basic idea : " << basic.getIdea(0) << std::endl;
+	{
+		Dog	tmp = basic;
 
-	std::cout << "dog1 idea: " << dog1.getIdea(0) << std::endl;
-	std::cout << "dog2 idea: " << dog2.getIdea(0) << std::endl;
+		tmp.setIdea(0, "tmp has its own idea");
+		std::cout << "tmp idea: " << tmp.getIdea(0) << std::endl;
+	}
+	std::cout << "basic idea after tmp destruction: "
+		<< basic.getIdea(0) << std::endl;
 }
+/*
+Parce que si tu as fait une shallow copy :
+basic.brain et tmp.brain pointent vers le même Brain
+Donc quand tmp est détruit, il delete le Brain commun.
+Après, basic.getIdea(0) peut crash ou afficher n’importe quoi.
+*/
 
-static void	testCatAssignment()
+static void	testAssignment()
 {
 	std::cout << std::endl;
-	std::cout << "----- Cat assignment test -----" << std::endl;
+	std::cout << "----- Assignment deep copy test -----" << std::endl;
+	Dog	dog1;
+	Dog	dog2;
 	Cat	cat1;
 	Cat	cat2;
+
+	dog1.setIdea(0, "dog1 original idea");
+	dog2 = dog1;
+	dog2.setIdea(0, "dog2 changed idea");
+	std::cout << "dog1 idea: " << dog1.getIdea(0) << std::endl;
+	std::cout << "dog2 idea: " << dog2.getIdea(0) << std::endl;
 
 	cat1.setIdea(0, "I want fish");
 	cat2 = cat1;
@@ -64,7 +82,7 @@ int	main()
 
 	std::cout << std::endl;
 	testAnimalArray();
-	testDogDeepCopy();
-	testCatAssignment();
+	testDogCopyConstructor();
+	testAssignment();
 	return (0);
 }

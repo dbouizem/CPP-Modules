@@ -27,32 +27,44 @@ static void	subjectTest()
 	delete src;
 }
 
+static void	extraTests()
+{
+	std::cout << std::endl;
+	std::cout << "----- Extra tests -----" << std::endl;
+	MateriaSource	source;
+	Character		me("mack");
+	Character		target("sephir");
+	AMateria*		tmp;
+
+	source.learnMateria(new Ice());
+	source.learnMateria(new Cure());
+	tmp = source.createMateria("unknown");
+	if (!tmp)
+		std::cout << "unknown materia was not created" << std::endl;//unknown materia was not created
+	me.equip(source.createMateria("ice"));
+	me.equip(source.createMateria("cure"));
+	me.equip(source.createMateria("ice"));
+	me.equip(source.createMateria("cure"));
+	tmp = source.createMateria("ice");
+	me.equip(tmp);
+	delete tmp;
+	me.use(0, target);//* shoots an ice bolt at sephir *
+	me.use(1, target);// * heals sephir's wounds *
+	me.use(4, target);//n’affiche rien, index invalide
+	me.unequip(0);
+	me.use(0, target);//n’affiche rien, car le slot 0 est vide après unequip
+
+	Character copy(me);
+	copy.use(1, target);//* heals sephir's wounds *
+
+	Character assigned("assigned");
+	assigned = me;
+	assigned.use(2, target);//* shoots an ice bolt at sephir *
+}
+
 int	main()
 {
 	subjectTest();
-
-	/*
-		Optional extra tests:
-
-		MateriaSource source;
-		Character me("cloud");
-		Character target("sephiroth");
-
-		source.learnMateria(new Ice());
-		source.learnMateria(new Cure());
-
-		me.equip(source.createMateria("ice"));
-		me.equip(source.createMateria("cure"));
-		me.equip(source.createMateria("unknown"));
-		me.use(0, target);
-		me.use(1, target);
-		me.use(2, target);
-		me.unequip(0);
-		me.use(0, target);
-
-		Character copy(me);
-		copy.use(1, target);
-	*/
-
+	extraTests();
 	return (0);
 }
